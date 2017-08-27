@@ -1,44 +1,22 @@
-{% extends 'scotstartup/base.html' %}
-
-{% load staticfiles %}
-
-{% block title %} Home {% endblock %}
+{% extends 'scotstartup/base.html' %} 
+{% load staticfiles %} 
+{% block title %} Home {% endblock %} 
 
 {% block body_block %}
 <div class="page-header">
-    <h1>hello world</h1>
-   
     
-
     {% if companies %}
-        <h2>companies</h2>
-        <ul>
-            {% for company in companies %}
-            <li><a href="{% url 'company' company.slug %}">{{ company.name }}<?a></li>
+    <h2>companies</h2>
+    <ul>
+        {% for company in companies %}
+        <li><a href="{% url 'company' company.slug %}">{{ company.name }}<?a></li>
             {% endfor %}
         </ul>
     {% else %}
         <strong>No companies.</strong>
     {% endif %}
     
-    <a href="{% url 'add_company' %}"/>Add Company</a>
-
-    {% if user.is_authenticated %}
-        <p>Welcome back {{ user.username }}.<p>
-        <a href="{% url 'auth_logout' %}?next=/scotstartup/">Logout</a>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'auth_login' %}">Login</a>
-        <a href="{% url 'registration_register' %}">Register</a>
-    {% endif %}
-
+    <a href="{% url 'add_company' %}"/>Add Company</a> 
     
-    
-
-    <img src="{% static "images/tokyo.jpg" %}" alt="tokyo image"/>
-
 </div>
 {% endblock %}
-
-
-

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+
+<head>
+    <title>Scottish Startups</title>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    
+    {% if company %}
+        <h1>{{ company_name }}</h1>
+        <p>{{ company_description }}</p>
+    {% else %}
+        <strong>No company named {{ company_name }}found.</strong>
+    {% endif %}
+</body>
+
+
+
+</html>

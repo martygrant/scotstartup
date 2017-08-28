@@ -1,5 +1,6 @@
 {% extends 'scotstartup/base.html' %} 
 {% load staticfiles %} 
+{% load scotstartup_extras %}
 {% block title %} Home {% endblock %} 
 
 {% block body_block %}
@@ -16,6 +17,14 @@
         <strong>No companies.</strong>
     {% endif %}
     
+    <div class="col-sm-3 col-md-2 sidebar">
+        
+        {% block side_block %}
+        {% get_company_list company %}
+        {% endblock %}
+        
+    </div>
+
     <a href="{% url 'add_company' %}"/>Add Company</a> 
     
 </div>

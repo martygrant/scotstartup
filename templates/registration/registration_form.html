@@ -1,6 +1,8 @@
 {% extends "scotstartup/base.html" %}
 
-{% block body_block %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
 <form role="form"  method="post" action=".">
                 {% csrf_token %}
 

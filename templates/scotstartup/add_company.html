@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-    <head>
-        <title>Scottish Startups</title>
-    </head>
+{% extends 'scotstartup/base.html' %} 
 
-    <body>
+    {% block title %} Add New Company {% endblock %}
+
+    {% block body %}
         <h1>Add Company</h1>
 
         <form id="company_form" method="post" action="/scotstartup/add_company/">
@@ -22,4 +21,4 @@
             <input type="submit" name="submit" value="Create Company" />
         </form>
     </body>
-</html>
+{% endblock %}

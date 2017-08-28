@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html>
-
+{% extends 'scotstartup/base.html' %} 
+{% load scotstartup_extras %}
 {% load staticfiles %}
 
-<head>
-    <title>Scottish Startups</title>
-</head>
+{% block title %}{{ company_name }}{% endblock %}
 
-<body>
-    <h1>hello world</h1>
-    
+{% block body %}
     {% if company %}
         <h1>{{ company_name }}</h1>
         <p>{{ company_description }}</p>
     {% else %}
         <strong>No company named {{ company_name }}found.</strong>
     {% endif %}
-</body>
 
-
-
-</html>
+{% endblock %}

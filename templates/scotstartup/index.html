@@ -3,29 +3,27 @@
 {% load scotstartup_extras %}
 {% block title %} Home {% endblock %} 
 
-{% block body_block %}
-<div class="page-header">
-    
+{% block body %}
+
+    <!--
     {% if companies %}
     <h2>companies</h2>
     <ul>
         {% for company in companies %}
-        <li><a href="{% url 'company' company.slug %}">{{ company.name }}<?a></li>
+        <li><a href="{% url 'company' company.slug %}">{{ company.name }}<a></li>
             {% endfor %}
         </ul>
     {% else %}
         <strong>No companies.</strong>
     {% endif %}
+    -->
     
-    <div class="col-sm-3 col-md-2 sidebar">
-        
-        {% block side_block %}
-        {% get_company_list company %}
-        {% endblock %}
-        
+    <div class="row">
+        <div class="col-md-4">featured startups</div>
+        <div class="col-md-4">new startups</div>
     </div>
 
     <a href="{% url 'add_company' %}"/>Add Company</a> 
     
-</div>
+
 {% endblock %}

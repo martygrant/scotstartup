@@ -1,8 +1,12 @@
 {% if companies %}
 <ul class="nav nav-sidebar">
 {% for company in companies %}
-    {% if company == act_company %} <li  class="active" > {% else  %} <li>{% endif %}
-    <a href="{% url 'company'  company.slug %}">{{ company.name }}</a></li>
+    {% if company == act_company %} 
+        <li class="active" > 
+    {% else %}
+        <li>
+    {% endif %}
+    <a href="{% url 'company' company.slug %}">{{ company.name }}</a></li>
 {% endfor %}
 
 {% else %}

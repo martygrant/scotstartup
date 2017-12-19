@@ -2,15 +2,35 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from scotstartup.models import Company
-from scotstartup.forms import CompanyForm, UserForm, UserProfileForm
+from scotstartup.models import Company, Event
+from scotstartup.forms import CompanyForm, UserForm, UserProfileForm, EventForm
 
 def index(request):
     company_list = Company.objects.all()
     
-    context_dict = {'companies': company_list}
+    context_dict = {}
+
+    context_dict['companies'] = company_list
+
+    recentCompanies = Company.objects.order_by("-created")[:5]
+    context_dict['recentCompanies'] = recentCompanies
+
+    featuredCompanies = Company.objects.order_by("-created")[:5]
+    context_dict['featuredCompanies'] = recentCompanies
+
+    events = Event.objects.order_by("-created")[:5]
+    context_dict['events'] = events
 
     return render(request, 'scotstartup/index.html', context_dict)
+
+def companies(request):
+    company_list = Company.objects.all()
+    
+    context_dict = {}
+
+    context_dict['companies'] = company_list
+
+    return render(request, 'scotstartup/companies.html', context_dict)
 
 def company(request, company_name_slug):
     context_dict = {}
@@ -39,4 +59,44 @@ def add_company(request):
         form = CompanyForm()
         
     return render(request, 'scotstartup/add_company.html', {'form': form})
+
+
+def event(request, event_name_slug):
+    context_dict = {}
+
+    try:
+        event = Event.objects.get(slug=event_name_slug)
+        context_dict['event_name'] = event.name
+        context_dict['event_description'] = event.description
+        context_dict['event'] = event
+    except event.DoesNotExist:
+        pass
+
+    return render(request, 'scotstartup/event.html', context_dict)
+
+
+def events(request):
+    event_list = Event.objects.all()
+    
+    context_dict = {}
+
+    context_dict['events'] = event_list
+
+    return render(request, 'scotstartup/events.html', context_dict)
+
+
+def add_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            
+            return index(request)
+        else:
+            print form.errors
+    else:
+        form = EventForm()
+        
+    return render(request, 'scotstartup/add_event.html', {'form': form})
             

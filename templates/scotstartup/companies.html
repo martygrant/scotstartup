@@ -1,3 +1,10 @@
+{% extends 'scotstartup/base.html' %} 
+{% load staticfiles %} 
+{% load scotstartup_extras %}
+{% block title %} Companies {% endblock %} 
+
+{% block body %}
+
 {% if companies %}
 <ul class="nav nav-sidebar">
 {% for company in companies %}
@@ -14,3 +21,5 @@
 
 </ul>
 {% endif %}
+
+{% endblock %}

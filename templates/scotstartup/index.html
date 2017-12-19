@@ -27,7 +27,11 @@
                     <h3 class="panel-title">New Startups</h3>
                 </div>
                 <div class="panel-body">
-                    Panel content
+                    {% if recentCompanies %}
+                        {% for company in recentCompanies %}
+                            <p><a href="{% url 'company' company.slug %}">{{ company.name }}</a></p>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -60,13 +64,17 @@
                         <h3 class="panel-title">Events</h3>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        {% for event in events %}
+                            <p><a href="{% url 'event' event.slug %}">{{ event.name }}</a></p>  
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
 
-    <a href="{% url 'add_company' %}"/>Add Company</a> 
+    <a href="{% url 'add_company' %}"/>Add Company</a>
+    </br> 
+    <a href="{% url 'add_event' %}"/>Add Event</a> 
     
 
 {% endblock %}

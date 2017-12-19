@@ -1,0 +1,15 @@
+{% extends 'scotstartup/base.html' %} 
+{% load scotstartup_extras %}
+{% load staticfiles %}
+
+{% block title %}{{ event_name }}{% endblock %}
+
+{% block body %}
+    {% if event %}
+        <h1>{{ event_name }}</h1>
+        <p>{{ event_description }}</p>
+    {% else %}
+        <strong>No event named {{ event_name }}found.</strong>
+    {% endif %}
+
+{% endblock %}

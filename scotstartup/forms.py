@@ -1,5 +1,5 @@
 from django import forms
-from scotstartup.models import Company, UserProfile
+from scotstartup.models import Company, UserProfile, Event
 from django.contrib.auth.models import User
 
 class CompanyForm(forms.ModelForm):
@@ -9,6 +9,15 @@ class CompanyForm(forms.ModelForm):
 
     class Meta:
         model = Company
+        fields = ('name', 'description')
+
+class EventForm(forms.ModelForm):
+    name = forms.CharField(max_length=128, help_text="Event name")
+    description = forms.CharField(max_length=256, help_text="Description")
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = Event
         fields = ('name', 'description')
 
 class UserForm(forms.ModelForm):

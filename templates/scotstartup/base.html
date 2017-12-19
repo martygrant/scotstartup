@@ -51,8 +51,8 @@
           <li class="active"><a href="/scotstartup/">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#news">News</a></li>
-          <li><a href="#startups">Startups</a></li>
-          <li><a href="#events">Events</a></li>
+          <li><a href="{% url 'companies' %}">Startups</a></li>
+          <li><a href="{% url 'events' %}">Events</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -65,7 +65,7 @@
           {% endif %}
         </ul>
 
-        <div class="col-sm-3 col-md-3 col-md-offset-2">
+        <div class="col-sm-3 col-md-3 col-md-offset-1">
           <form class="navbar-form" role="search">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search" name="q">

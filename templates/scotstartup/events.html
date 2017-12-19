@@ -1,0 +1,20 @@
+{% extends 'scotstartup/base.html' %} 
+{% load staticfiles %} 
+{% load scotstartup_extras %}
+{% block title %} Events {% endblock %} 
+
+{% block body %}
+
+{% if events %}
+<ul class="nav nav-sidebar">
+{% for event in events %}
+    <li><a href="{% url 'event' event.slug %}">{{ event.name }}</a></li>
+{% endfor %}
+
+{% else %}
+<li> <strong >There are no events present.</strong></li>
+
+</ul>
+{% endif %}
+
+{% endblock %}

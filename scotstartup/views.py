@@ -99,4 +99,11 @@ def add_event(request):
         form = EventForm()
         
     return render(request, 'scotstartup/add_event.html', {'form': form})
-            
+
+
+def about(request):
+    return render(request, 'scotstartup/about.html')
+
+
+def news(request):
+    return render(request, 'scotstartup/news.html')

@@ -4,6 +4,7 @@ from scotstartup import forms
 
 urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
+        url(r'^search/$', views.search, name='search'),
         url(r'^about/$', views.about, name='about'),
         url(r'^news/$', views.news, name='news'),
         url(r'^add_company/$', views.add_company, name="add_company"),

@@ -1,0 +1,52 @@
+{% extends 'scotstartup/base.html' %} 
+{% load scotstartup_extras %}
+{% load staticfiles %}
+
+{% block title %} Search {% endblock %}
+
+{% block body %}
+
+<h1>Search Results - {{ query }}</h1>
+
+{% if companies %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Companies</h3>
+    </div>
+    <div class="panel-body">
+        {% for company in companies %}
+            <p><a href="{% url 'company' company.slug %}">{{ company.name }}</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+{% if companies %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Events</h3>
+    </div>
+    <div class="panel-body">
+        {% for event in events %}
+            <p><a href="{% url 'event' event.slug %}">{{ event.name }}</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+{% if news %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">News</h3>
+    </div>
+    <div class="panel-body">
+        {% for news in newslist %}
+            <p><a href="{% url 'news' news.slug %}">{{ news.name }}</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

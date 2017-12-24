@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from scotstartup.models import Company, Event
 from scotstartup.forms import CompanyForm, UserForm, UserProfileForm, EventForm
 
@@ -15,8 +16,8 @@ def index(request):
     recentCompanies = Company.objects.order_by("-created")[:5]
     context_dict['recentCompanies'] = recentCompanies
 
-    featuredCompanies = Company.objects.order_by("-created")[:5]
-    context_dict['featuredCompanies'] = recentCompanies
+    featuredCompanies = Company.objects.filter(featured=True)[:5]
+    context_dict['featuredCompanies'] = featuredCompanies
 
     events = Event.objects.order_by("-created")[:5]
     context_dict['events'] = events
@@ -107,3 +108,16 @@ def about(request):
 
 def news(request):
     return render(request, 'scotstartup/news.html')
+
+def search(request):
+    context_dict = {}
+    if 'q' in request.GET:
+        q = request.GET.get('q')
+        context_dict['query'] = q
+        try:
+            companies = Company.objects.filter(Q(name__contains=q))
+            context_dict['companies'] = companies
+        except:
+            pass
+
+    return render(request, 'scotstartup/search.html', context_dict)

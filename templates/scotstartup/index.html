@@ -18,8 +18,6 @@
     {% endif %}
     -->
 
-    
-    
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
@@ -41,7 +39,11 @@
                     <h3 class="panel-title">Featured Startups</h3>
                 </div>
                 <div class="panel-body">
-                    Panel content
+                    {% if featuredCompanies %}
+                        {% for company in featuredCompanies %}
+                            <p><a href="{% url 'company' company.slug %}">{{ company.name }}</a></p>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

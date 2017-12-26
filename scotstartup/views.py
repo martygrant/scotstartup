@@ -124,3 +124,6 @@ def search(request):
             pass
 
     return render(request, 'scotstartup/search.html', context_dict)
+
+def profile(request):
+    return render(request, 'scotstartup/profile.html')

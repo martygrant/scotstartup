@@ -5,11 +5,22 @@
 {% block title %}{{ company_name }}{% endblock %}
 
 {% block body %}
-    {% if company %}
-        <h1>{{ company_name }}</h1>
-        <p>{{ company_description }}</p>
-    {% else %}
-        <strong>No company named {{ company_name }}found.</strong>
-    {% endif %}
+    
+<div class="row">
+    <div class="col-md-12">
+        {% if company %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ company_name }}</h3>
+                </div>
+                <div class="panel-body">
+                    {{ company_description }}
+                </div>
+            </div>
+        {% else %}
+        <strong>No company named {{ company_name }} found.</strong>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock %}

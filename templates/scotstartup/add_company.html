@@ -3,22 +3,33 @@
     {% block title %} Add New Company {% endblock %}
 
     {% block body %}
-        <h1>Add Company</h1>
 
-        <form id="company_form" method="post" action="/scotstartup/add_company/">
+        <div class="row">
+            <div class="col-md-12">    
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add New Company</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form id="company_form" method="post" action="/scotstartup/add_company/">
+                            {% csrf_token %}
+                            {% for hidden in forms.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                
+                            {% for field in form.visible_fields %}
+                                {{ field.errors }}
+                                {{ field.help_text }}
+                                {{ field }}
+                                </br>
+                                </br>
+                            {% endfor %}
+                
+                            <input type="submit" name="submit" value="Create Company" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            {% csrf_token %}
-            {% for hidden in forms.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-
-            <input type="submit" name="submit" value="Create Company" />
-        </form>
-    </body>
 {% endblock %}

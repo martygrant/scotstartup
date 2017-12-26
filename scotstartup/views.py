@@ -117,6 +117,9 @@ def search(request):
         try:
             companies = Company.objects.filter(Q(name__contains=q))
             context_dict['companies'] = companies
+
+            events = Event.objects.filter(Q(name__contains=q))
+            context_dict['events'] = events
         except:
             pass
 
